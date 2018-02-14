@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/MsftGivingTriviaWebApp/App_Data
+/MsftGivingTriviaWebApp/bin
+/MsftGivingTriviaWebApp/obj
+/packages
+/MsftGivingTriviaWebApp/Properties/PublishProfiles/
+/MsftGivingTriviaWebApp/Properties/PublishProfiles/
+*.csproj.user
+obj/
+bin/

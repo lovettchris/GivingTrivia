@@ -1,0 +1,129 @@
+﻿@using MsftGivingTriviaWebApp.Models
+@model EditQuestionModel
+@{
+    ViewBag.Title = "Admin Page";
+}
+
+<script>
+    $(window).load(function () {
+        InitGame();
+        // tell game.js we want to allow editing the questions.
+        EditQuestions();
+        InitAdmin();
+    });
+
+</script>
+
+@if (ViewBag.IsAdmin)
+{
+    <script>
+        function InitAdmin(){
+
+            $("#addForm").submit(function () {
+                var q = $("#addForm");
+                q.validate();
+                if (q.valid()) {
+                    var form = q[0];
+                    try {
+                        AddNewQuestion(form.Question.value, form.Answer.value, form.BogusAnswer1.value, form.BogusAnswer2.value, form.BogusAnswer3.value);
+                    } catch (e) { }
+                }
+                return false;
+            });
+        };
+    </script>
+}
+else
+{
+    <script>
+        function InitAdmin() {
+            $("#addForm").submit(function () {
+                ShowError("You do not have permission to add new questions")
+                return false;
+            });
+        }
+    </script>
+}
+
+
+<div>
+
+    <div style="margin:10pt;" id="questionpanel">
+        <div class="lead">
+            These are the trivia questions:
+        </div>
+        <div id="questionlist" class="questionlist">
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <section id="loginForm">
+                    @using (Html.BeginForm("AddQuestion", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id="addForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h4>Add new question</h4>
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Question, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Question, new { @class = "form-control questionfield" })
+                                @Html.ValidationMessageFor(m => m.Question, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Answer, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Answer, new { @class = "form-control questionfield" })
+                                @Html.ValidationMessageFor(m => m.Answer, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.BogusAnswer1, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.BogusAnswer1, new { @class = "form-control questionfield" })
+                                @Html.ValidationMessageFor(m => m.BogusAnswer1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.BogusAnswer2, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.BogusAnswer2, new { @class = "form-control questionfield" })
+                                @Html.ValidationMessageFor(m => m.BogusAnswer2, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.BogusAnswer3, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.BogusAnswer3, new { @class = "form-control questionfield" })
+                                @Html.ValidationMessageFor(m => m.BogusAnswer3, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">                                
+                                <input type="submit" value="ADD" class="btn btn-default" style="float:left"/>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="BogusAnswer1">Set API Key</label>
+                            <div class="col-md-offset-2 col-md-10">                                
+                                <input type="button" value="KEY" class="btn btn-default" onclick="window.location.href='/play/setkey'"/>
+                            </div>
+                        </div>
+                    }
+                </section>
+            </div>
+        </div>
+
+        <div style="clear:both"></div>
+</div>
+
+    <div id="errormessage" class="errormessage">
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

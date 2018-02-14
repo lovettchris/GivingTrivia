@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Giving Trivia</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/firebase")
+    @Scripts.Render("~/bundles/game")
+    @if (ViewBag.IsAdmin != null && ViewBag.IsAdmin)
+    {
+        @Scripts.Render("~/bundles/admin")
+    }
+    @Scripts.Render("~/bundles/qrcode")
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        var appInsights=window.appInsights||function(config){
+            function r(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s=u.createElement(o),i,f;for(s.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace","Ajax"];i.length;)r("track"+i.pop());return r("setAuthenticatedUserContext"),r("clearAuthenticatedUserContext"),config.disableExceptionTracking||(i="onerror",r("_"+i),f=e[i],e[i]=function(config,r,u,e,o){var s=f&&f(config,r,u,e,o);return s!==!0&&t["_"+i](config,r,u,e,o),s}),t
+        }({
+            instrumentationKey:"6f8f8a1c-5aec-4e65-bf9b-778c1d4a81dc"
+        });
+
+        window.appInsights=appInsights;
+        appInsights.trackPageView();
+    </script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Giving Trivia", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Play", "Index", "Play")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (ViewBag.IsAdmin != null && ViewBag.IsAdmin)
+                    {
+                        <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Microsoft Corporation</p>
+        </footer>
+    </div>
+
+    @if (ViewBag.UserName != null)
+    {
+        <script>
+            var userid = "@ViewBag.UserName";
+        </script>
+    }
+    else
+    {
+        <script>
+            var userid = null;
+        </script>
+    }
+    @if (ViewBag.IsAdmin != null)
+    {
+        <script>
+            var isadmin = @ViewBag.IsAdmin.ToString().ToLowerInvariant();
+        </script>
+    }
+    else
+    {
+        <script>
+            var isadmin = false;
+        </script>
+    }
+
+    @if (ViewBag.ApiKey != null)
+    {
+        <script>
+            var apiKey = "@ViewBag.ApiKey.ToString().ToLowerInvariant()";
+        </script>
+    }
+    else
+    {
+        <script>
+            var apiKey = "";
+        </script>
+    }
+
+</body>
+</html>

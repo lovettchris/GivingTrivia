@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="Admin" Bounds="-195.718333333333,124.98,54.84,25.96" UseManualLocation="True" />
+    <Node Id="CountDown" Bounds="-106.244166666667,272.99,83.0666666666667,25.96" Label="count down" UseManualLocation="True" />
+    <Node Id="GameEover" Bounds="208.755833333333,234.99,82.5766666666667,25.96" Label="game eover" UseManualLocation="True" />
+    <Node Id="Join" Bounds="-11,-2,50,25.96" UseManualLocation="True" />
+    <Node Id="Play" Bounds="-26.2441666666668,170.99,50,25.96" Label="play" UseManualLocation="True" />
+    <Node Id="ReportScores" Bounds="8.75583333333324,321.99,135.79,41.92" Label="show question winner&#xD;&#xA;&amp; running scores" UseManualLocation="True" />
+    <Node Id="ReportTotalScore&amp;Winner" Bounds="227.755833333333,328.99,111.64,41.92" Label="report total score&#xD;&#xA;&amp; winner" UseManualLocation="True" />
+    <Node Id="WaitForStart" Bounds="-27,81,86.7933333333333,25.96" Label="wait for start" UseManualLocation="True" />
+  </Nodes>
+  <Links>
+    <Link Source="Admin" Target="Play" Bounds="-140.878332214355,145.512009258117,105.957248582746,29.1827066036996" />
+    <Link Source="CountDown" Target="ReportScores" Bounds="-32.5087565125859,298.950001220703,48.81253263372,19.6753338788618" />
+    <Link Source="GameEover" Target="ReportTotalScore&amp;Winner" Bounds="254.312065769172,260.950001220703,19.5607932261547,59.4903089437439" />
+    <Link Source="GameEover" Target="WaitForStart" Bounds="43.605787945564,111.912709562874,186.743946510413,123.077291657829" />
+    <Link Source="Join" Target="WaitForStart" Bounds="14.3748040139971,23.9599995422363,1.38728739739826,48.043750188779" />
+    <Link Source="Play" Target="CountDown" Bounds="-51.8796719077569,196.95,42.5590607966457,68.3984905660377" />
+    <Link Source="ReportScores" Target="GameEover" Bounds="114.914932631412,265.273761226731,103.539875583678,56.716238773269" />
+    <Link Source="ReportScores" Target="Play" Bounds="9.07553283643132,205.032017164164,57.3055860674139,116.957982835836" Label="next question" LabelBounds="39.5243296843969,246.671025457716,71.9466666666667,15.96" />
+    <Link Source="WaitForStart" Target="Admin" Bounds="-132.123129724187,104.308868522968,105.143483645592,25.0370109833933" Label="go" LabelBounds="-86.1364303037495,120.828895035919,14.0966666666667,15.96" />
+  </Links>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="LabelBounds" DataType="System.Windows.Rect" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+  </Properties>
+</DirectedGraph>

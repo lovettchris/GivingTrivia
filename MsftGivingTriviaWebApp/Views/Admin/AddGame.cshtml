@@ -1,0 +1,78 @@
+﻿@model MsftGivingTriviaWebApp.Models.AddGameModel
+@{
+    ViewBag.Title = "Add New Game";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("AddGame", "Admin", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "addGame" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Enter the title for the new game.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        </div>
+    </div>
+    @*<div class="form-group">
+        @Html.LabelFor(m => m.Category, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.Category, from c in Model.CategoryList
+                                                   select new SelectListItem()
+                                                   {
+                                                       Text = c,
+                                                       Value = c
+                                                   }, new { @class = "form-control" })
+        </div>
+    </div>*@
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Submit" />
+            </div>
+        </div>
+        <div id="errormessage" class="errormessage">
+        </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@if (ViewBag.IsAdmin)
+{
+    <script>
+        function InitAdmin() {
+            $("#addGame").submit(function () {
+                var q = $("#addGame");
+                q.validate();
+                if (q.valid()) {
+                    var form = q[0];
+                    if (isadmin) {
+                        AddNewGame(document.getElementById('Title').value);
+                    } else {
+                        ShowError("You do not have permission to add new games")
+                    }
+                }
+                return false;
+            });
+        };
+    </script>
+}
+else
+{
+    <script>
+        function InitAdmin() {
+
+        }
+    </script>
+}
+
+<script>
+    $(window).load(function () {
+        InitGame(gameConfig);
+        InitAdmin();
+    });
+</script>

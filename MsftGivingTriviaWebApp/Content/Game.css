@@ -1,0 +1,338 @@
+﻿.form-line-break {
+    font-size:10px;
+    margin:0;
+    padding:0;
+}
+
+.questionfield {    
+    max-width: 800px;
+}
+
+.heading {
+    font-size: 48pt;
+}
+
+.tilelist {    
+}
+.questionlist {    
+}
+
+.question {   
+    padding:10px; 
+    border-bottom: 1px solid #eeeeee;
+}
+.questiontitle {
+    font-size: 18pt;
+}
+.questionanswer {
+    font-size: 12pt;
+    font-weight:bold;
+}
+.questionwrong {
+    font-size: 12pt;
+    color:gray;
+}
+
+.tile {
+    float: left;
+    margin:10px;
+    overflow: hidden;
+    user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    display: table; 
+    font-weight:bold;
+}
+
+.caption {
+  display: table-cell; 
+  vertical-align: middle; 
+  text-align: center; 
+  width:90%;
+}
+
+.caption2 {
+  position: absolute;
+  display:grid;
+  font-size:12pt;  
+  vertical-align: bottom; 
+  text-align: left; 
+  font-style:italic;
+  font-weight:normal;
+  color:#505050;
+}
+
+.captionDeleteIcon {    
+  position: absolute;
+  display:grid;
+  vertical-align: top; 
+  text-align: left; 
+  width:32px;
+  height:32px;
+}
+
+.caption-plus {
+  display: table-cell; 
+  vertical-align: middle; 
+  text-align: center; 
+  width:90%;
+  color:green;
+}
+
+.tile:hover {    
+    border-width:3px;
+    border-style:solid;
+    border-color:darkmagenta;    
+    cursor: pointer;
+}
+
+.tile:active {    
+    margin:13px; 
+}
+
+.result {
+    position: absolute;
+    color:white;
+    font-family:'Comic Sans MS';
+    padding:20px;
+    text-align:center;
+    vertical-align: middle; 
+    opacity:0.8;
+    display: table; 
+}
+
+.result p {
+  display: table-cell; 
+  vertical-align: middle; 
+  text-align: center; 
+  width:100%;
+}
+
+.wronganswer {
+    background:#01325B;
+}
+
+.rightanswer {
+    background:#015B32;
+
+}
+
+.errormessage {
+    font-size:18pt;
+    color:red;
+    margin:10pt;
+}
+
+.user {
+    clear:both;
+}
+.userscore {
+    min-width:30px;
+    border-radius: 4px;
+    background: #85BB65 ;
+    font-weight:bold;
+    text-align:right;
+    padding:0px 3px;
+}
+.userscoreself {    
+    min-width:30px;
+    border-radius: 4px;
+    background: #68B7AB;
+    font-weight:bold;
+    text-align:right;
+    padding:0px 3px;
+}
+.username {
+    padding:0px 5px;
+}
+.usertable {
+    border-collapse:separate; 
+    border-spacing: 5px;
+    display:block;
+    margin:auto;
+}
+
+.usertabletip {
+    color:#aaaabb;
+    font-size:9pt;
+    text-align:center;
+}
+
+.righthandlist {
+    margin:-60px 0px 0px 0px;
+    padding:0px 20px 20px 20px;
+    overflow: auto;
+}
+
+/*small screens (phones)*/
+@media screen and (min-width: 300px) {
+    
+.tilelist {    
+    font-size: 10pt;
+    max-width:300px;
+}
+.tile {
+    width:120px;
+    height:100px;
+}
+
+.caption2 { 
+  margin-left:10px;
+  margin-top:80px;
+  font-size:9pt;
+}
+.captionDeleteIcon {
+  width:24px;
+  height:24px;
+  margin-left:80px;
+  margin-top:5px;
+}
+
+.caption-plus {
+    font-size: 24pt;
+}
+
+.tile:active {    
+    width:114px;
+    height:94px;
+    margin:13px; 
+}
+.usertable {
+    font-size:10pt;
+}
+.popup-title {
+    font-size:18pt;
+}
+.popup-subtitle {
+    font-size:12pt;
+}
+}
+
+/* medium screens (tablets)*/
+@media screen and (min-width: 768px) {
+
+    .righthandlist {
+        position: absolute !important;
+        top: 120px;
+        right: 20px;
+    }
+}
+
+/* medium screens (tablets)*/
+@media screen and (min-width: 1024px) {
+    
+.righthandlist {
+    
+    position: absolute !important; 
+    top: 120px; 
+    right:20px;
+}
+
+.userscoreself {
+    min-width: 40px;
+}
+.userscore {
+    min-width: 40px;
+}
+
+.tilelist {    
+    font-size: 18pt;
+    max-width:800px;
+}
+.tile {
+    width:250px;
+    height:200px;
+}
+
+.caption-plus {
+    font-size: 48pt;
+}
+
+.caption2 {
+  margin-top:170px;
+  margin-left:20px;
+  font-size:12pt;  
+}
+
+.captionDeleteIcon {
+  width:32px;
+  height:32px;
+  margin-left:210px;
+  margin-top:5px;
+}
+
+.tile:active {    
+    width:244px;
+    height:194px;    
+}
+.usertable {
+    font-size:14pt;
+}
+.popup-title {
+    font-size:24pt;
+}
+.popup-subtitle {
+    font-size:18pt;
+}
+}
+
+
+/* medium screens (tablets)*/
+@media screen and (min-width: 1400px) {
+    
+.usertable {
+    font-size:18pt;
+}
+}
+
+
+/*larger screens */
+@media screen and (min-width: 1600px) {
+    
+.tilelist {    
+    font-size: 24pt;
+    max-width:1200px;
+}
+.tile {
+    width:400px;
+    height:300px;
+}
+
+.userscoreself {
+    min-width: 50px;
+}
+.userscore {
+    min-width: 50px;
+}
+.caption-plus {
+    font-size: 72pt;
+}
+
+.caption2 {
+  margin-top:260px;
+  margin-left:20px;
+  font-size:12pt;  
+}
+
+.captionDeleteIcon {
+  width:48px;
+  height:48px;
+  margin-left:340px;
+  margin-top:5px;
+}
+
+.tile:active {    
+    width:394px;
+    height:294px;    
+}
+.usertable {
+    font-size:22pt;
+}
+.popup-title {
+    font-size:48pt;
+}
+.popup-subtitle {
+    font-size:18pt;
+}
+}
+

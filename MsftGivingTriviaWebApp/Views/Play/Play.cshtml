@@ -1,0 +1,137 @@
+﻿@model MsftGivingTriviaWebApp.Models.SelectGameModel
+@{
+    ViewBag.Title = "Game Page";
+}
+<div ng-app="myApp"  style="padding:20px;" >
+
+    <div class="boldlead" id="heading">
+    </div>
+    <div id="qrcode" style="display:none"></div>
+
+    <div id="categorySelectPanel" style="display:none">
+        Select next category:<br />
+        <select id="categorySelect" class='form-control' data-val='true' data-val-required='The Category field is required.' name='Category'>
+        </select>
+    </div>
+    
+    <div id="mainpanel">
+
+        <div class="result wronganswer" style="visibility:hidden;">
+            <p>
+                <span class="popup-title">OOPS!</span><br />
+                <span id="wrongAnswerReason" class="popup-subtitle">wrong answer</span>
+            </p>
+        </div>
+        <div class="result rightanswer" style="visibility:hidden;">
+            <p>
+                <span id="winnerName" class="popup-title">CORRECT !</span><br />
+                <span id="winnerSubtitle" class="popup-subtitle">got it !!</span>
+            </p>
+        </div>
+        <div id="tilelist" class="tilelist">
+        </div>
+    </div>
+
+    <div class="righthandlist" >
+
+        <table ng-controller="userTableCtrl" id="userTable" class="usertable">
+            <tr>
+                <td colspan="3">
+                    <p class="lead" id="scoreTitle">
+                        Score for this round:
+                    </p>
+                </td>
+            </tr>
+            <tr class="userrow" id="timeRemainingRow">
+                <td class="userscore"><span id="timeRemaining">0</span></td>
+                <td class="userscore"><span id="points">0</span></td>
+                <td class="username">time remaining</td>
+            </tr>
+            <tr class="userrow" id="userScoreRow">
+                <td class="userscoreself"><span id="userWins"></span></td>
+                <td class="userscoreself"><span id="userPoints"></span></td>
+                <td class="username"><span id="userName"></span></td>
+            </tr>
+            <tr ng-repeat="x in viewModel | topWinners:9" class="userrow">
+                <td class="userscore">{{ x.wins}}</td>
+                <td class="userscore">{{ x.score }}</td>
+                <td class="username">{{ x.id | trimEmail }}</td>
+            </tr>
+            <tr class="userrow">
+                <td class="usertabletip">wins</td>
+                <td class="usertabletip">score</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <p class="lead" id="gameParticipants">
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="clear:both"></div>
+    <div id="errormessage" class="errormessage" style="clear:both">
+
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.controller('userTableCtrl', function ($scope) {
+            $scope.viewModel = [];
+
+            $scope.removeUser = function (user) {
+                var i = 0;
+                for (i = 0; i < $scope.viewModel.length; i++)
+                {
+                    var u = $scope.viewModel[i];
+                    if (u.id == user.id)
+                    {
+                        $scope.viewModel.splice(i, 1);
+                    }
+                }
+            };
+
+            $scope.updateUser = function (user) {
+                var i = 0;
+                for (i = 0; i < $scope.viewModel.length; i++) {
+                    var u = $scope.viewModel[i];
+                    if (u.id == user.id) {
+                        $scope.viewModel[i] = user;
+                        return;
+                    }
+                }
+
+                $scope.viewModel.push(user);
+            };
+
+            $scope.setUsers = function (list) {
+                var newList = [];
+                $scope.viewModel = newList.concat(list);
+            }
+        });
+
+        app.filter('topWinners', function () {
+            return GetTopWinners;
+        });
+
+        app.filter('trimEmail', function () {
+            return TrimEmail;
+        });
+
+
+          $(window).load(function () {
+              InitGame(gameConfig);
+              WatchGames();
+              OnGameSelected("@Model.GameId");
+          });
+
+    </script>
+
+    <p>
+        Some of these questions were brought to you by:
+    </p><p>
+        <a href="http://www.pubquizarea.com"><img src="~/Content/quizarea_logo4.gif" /></a>
+    </p>
+</div>

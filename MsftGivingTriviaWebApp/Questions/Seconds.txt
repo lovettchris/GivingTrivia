@@ -1,0 +1,16 @@
+What is the name of the second largest mountain in the world?,K-2,kilimanjaro,Everest,Hood
+On the periodic table what has a number of 2?,Helium,Hydrogen,Carbon,Neon
+What is the second closest planet to the sun?,Venus,Mars,Mercury,Earth
+"Yuri Gagaran was the first person in space, who was the second?",Alan Shepard,Buzz Aldrin,Neil Armstrong,Vladimir Aksyonov 
+What is the second largest non-continental island in the world?,New Guinea,Greenland,Japan,Madagascar
+What is the second largest moon in our solar system?,Titan,Ganymede,Callisto,Europa
+What is the second largest land mammal?,Rhino,Elephant,Hippo,Giraffe
+"The human body is made up of many elements, what is the second most abundant?",Carbon,Oxygen,Nitrogen,Calcium
+Which team in American Football has the second most superbowl wins?,Dallas Cowboys,Pittsburgh Steelers,Denver Broncos,New England Patriots
+Which is the second longest river in the world?,Amazon,Nile,Mississippi,Yangtze
+Which is the second largest continent on Earth?,Africa,Antarctica,North America,South America
+Which is the second closest star to Earth?,Proxima Centauri,Sol,Sirius,Luhman 16
+Which movie is the second highest-grossing?,Titanic,Avatar,Star Wars: The Force Awakens,Frozen
+Which is the second deepest trench on Earth?,Tonga,Mariana,Phillipine,Kuril-Kamchatka
+What is the second largest bone in the human body?,Tibia (shin),Femur (Thigh), Innominate (Hip),Radius (Forearm)
+What is the second tallest building in the world?,Shanghai Tower,Burj Khalifa,Ping An Finance Centre,Taipei 101
