@@ -12,3 +12,6 @@
 *.csproj.user
 obj/
 bin/
+/MsftGivingTriviaWebApp/Web.Debug.config
+/MsftGivingTriviaWebApp/Web.Release.config
+*.PublishSettings
