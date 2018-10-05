@@ -214,10 +214,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\dwb.png" />
+    <Content Include="Content\icon2.png" />
     <Content Include="Content\Game.css" />
     <Content Include="Content\give.jpg" />
-    <Content Include="Content\jdrf.jpg" />
+    <Content Include="Content\icon1.jpg" />
     <Content Include="Content\quizarea_logo4.gif" />
     <Content Include="Content\RecycleBin.png" />
     <Content Include="Content\trivialogo.png" />

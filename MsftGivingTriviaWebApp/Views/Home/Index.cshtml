@@ -1,8 +1,13 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<style type="text/css">
+    .bgtheme {
+        background: #675B7F;
+    }
+</style>
 
-<div class="jumbotron">
+<div class="jumbotron bgtheme" >
     <img src="/content/trivialogo.png" class="banner" />
     <p class="lead center">
         Welcome to the Give Campaign online trivia challenge!
@@ -11,15 +16,15 @@
         Our aim is to raise money to make the world a better place while enjoying a game of trivia with coworkers and friends.
         What's more fun than that?
         <br />
-        All contributions will go towards Alex's Lemonade Stand, an organization that funds research and treatment of childhood cancer.
+        All contributions will go towards either Bold Idea, an organization that develops and empowers young minds to execute bold ideas as a team through the power of technology, or the Anita Borg Institute, an organization that helps women grow their careers and make significant contributions to technical fields.
     </p>
 
     <p class="lead center" style="font-weight:bold">Please donate $5 or more to participate in the game.</p>
 
     <table align="center">
         <tr>
-            <td><a href="http://donate.jdrf.org/info/jdrf"><img src="/content/jdrf.jpg" class="banner" title="Cure, prevent and treat type 1 diabetes" /></a></td>
-            <td><a href="http://www.doctorswithoutborders.org/"><img src="/content/dwb.png" class="banner" title="Doctors without borders"/></a></td>
+            <td><a href="https://boldidea.org/"><img src="/content/icon1.jpg" class="banner" title="Bold Idea" /></a></td>
+            <td><a href="https://anitab.org/"><img src="/content/icon2.png" class="banner" title="Doctors without borders"/></a></td>
             <td><a href="http://aka.ms/dsstriviachallenge"><img src="/content/give.jpg" class="banner" title="Give" /></a></td>
         </tr>
     </table>
@@ -38,8 +43,8 @@
             <tr>
                 <td>
                     <p>
-                        <a class="btn btn-primary btn-lg" href="https://microsoft.benevity.org/campaigns/4676">Donate Here</a>
-                        <a class="btn btn-primary btn-lg" href="/play/index">Join a Game</a>
+                        <a class="btn btn-primary btn-lg bgtheme" href="https://microsoft.benevity.org/campaigns/4676">Donate Here</a>
+                        <a class="btn btn-primary btn-lg bgtheme" href="/play/index">Join a Game</a>
                     </p>
                 </td>
             </tr>
