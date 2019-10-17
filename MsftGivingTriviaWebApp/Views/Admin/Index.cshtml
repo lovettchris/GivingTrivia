@@ -139,7 +139,7 @@ else
             </div>
         </div>
 
-        <hr/>
+        <hr />
 
         <div class="row">
             <div class="col-md-8">
@@ -163,29 +163,27 @@ new { @class = "form-horizontal", role = "form", id = "deleteQuestionsForm" }))
 
         <hr />
 
+        <div class="row">
+            <div class="col-md-8">
+                <section id="loginForm">
+                    @using (Html.BeginForm("ResetUsers", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
+new { @class = "form-horizontal", role = "form", id = "resetUsersForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h4>Reset All Users Scores &amp; Wins</h4>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="RESET" class="btn btn-default" />
+                            </div>
+                        </div>
+                    }
+                </section>
+            </div>
+        </div>
 
         @if (ViewBag.UserName == "clovett@microsoft.com")
         {
-            <div class="row">
-                <div class="col-md-8">
-                    <section id="loginForm">
-                        @using (Html.BeginForm("ResetUsers", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
-new { @class = "form-horizontal", role = "form", id = "resetUsersForm" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <h4>Reset All Users Scores &amp; Wins</h4>
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="RESET" class="btn btn-default" />
-                                </div>
-                            </div>
-                        }
-                    </section>
-                </div>
-            </div>
-
-
             <hr />
 
             <div class="row">
