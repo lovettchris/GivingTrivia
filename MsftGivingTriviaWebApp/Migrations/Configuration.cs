@@ -10,6 +10,7 @@ namespace MsftGivingTriviaWebApp.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "MsftGivingTriviaWebApp.Models.ApplicationDbContext";
         }
 

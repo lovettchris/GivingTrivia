@@ -24,7 +24,6 @@ namespace MsftGivingTriviaWebApp.Controllers
         {
         }
         
-
         // GET: Play
         public ActionResult Index()
         {
@@ -265,6 +264,94 @@ namespace MsftGivingTriviaWebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public ActionResult HomePageCustomize(HomePageCustomizeModel model)
+        {
+            this.CheckUser();
+            Guid homePageGuid = typeof(HomePageCustomizeModel).GUID;
+            if (!ViewBag.IsAdmin)
+            {
+                ViewBag.Message = "You do not have admin permission";
+            }
+            else
+            {
+                var context = this.HttpContext.GetOwinContext();
+                var db = context.Get<ApplicationDbContext>();
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        int iconsUpdated = 0;
+                        foreach (string name in Request.Files)
+                        {
+                            HttpPostedFileBase upload = Request.Files.Get(name);
+                            string filename = upload.FileName;
+                            byte[] data = CustomizationBlobs.ReadToEnd(upload.InputStream);
+                            if (!string.IsNullOrEmpty(filename) && data.Length > 0)
+                            {
+                                CustomizationBlobs.UpdateBlob(name, data);
+
+                                if (name == "FileIcon1")
+                                {
+                                    model.IconUrl1 = filename;
+                                }
+                                else if (name == "FileIcon2")
+                                {
+                                    model.IconUrl2 = filename;
+                                }
+                                iconsUpdated++;
+                            }
+                        }
+
+                        CustomizationBlobs.UpdateCustomizationJson<HomePageCustomizeModel>("HomePageJson", model);
+                        var homePageCustomizations = (from i in db.Customizations where i.Id == homePageGuid select i).FirstOrDefault();
+                        if (homePageCustomizations == null)
+                        {
+                            homePageCustomizations = new CustomizationsModel() { Id = homePageGuid };
+                            db.Customizations.Add(homePageCustomizations);
+                        }
+                        homePageCustomizations.JsonBlobId = "HomePageJson";
+                        int count = db.SaveChanges();
+                        string suffix = "";
+                        switch (iconsUpdated)
+                        {
+                            case 0:
+                                suffix = " but not the icons";
+                                break;
+                            case 1:
+                                suffix = " and one of the icons";
+                                break;
+                            case 2:
+                                suffix = " and both icons";
+                                break;
+                            default:
+                                break;
+                        }
+                        ViewBag.Message = "Updated home page customizations" + suffix;
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.Message = "Error: " + ex.Message;
+                    }
+                }
+                else
+                {
+                    // populate existing data into the form
+                    var homePageCustomizations = (from i in db.Customizations where i.Id == homePageGuid select i).FirstOrDefault();
+                    if (homePageCustomizations != null) {
+                        string blobMame = homePageCustomizations.JsonBlobId;
+                        HomePageCustomizeModel existing = CustomizationBlobs.GetCustomizationJson<HomePageCustomizeModel>(blobMame);
+                        if (existing != null)
+                        {
+                            model.CopyFrom(existing);
+                        }
+                    }
+                }
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetKey(SetKeyModel model)
         {
             this.CheckUser();
@@ -272,7 +359,7 @@ namespace MsftGivingTriviaWebApp.Controllers
             {
                 if (!ViewBag.IsAdmin)
                 {
-                    ModelState.AddModelError("", "Sorry, you do not have permission to add games");
+                    ModelState.AddModelError("", "Sorry, you do not have permission to change the firebase key");
                 }
                 else
                 {

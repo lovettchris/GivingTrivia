@@ -1,0 +1,107 @@
+﻿@model MsftGivingTriviaWebApp.Models.HomePageCustomizeModel
+@{
+    ViewBag.Title = "Customize Home Page";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("HomePageCustomize", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new
+{
+    enctype = "multipart/form-data",
+    @class = "form-horizontal",
+    role = "form",
+    id = "customizeForm"
+}))
+{
+    @Html.AntiForgeryToken()
+    <h4>You can customize the main blurb, and two of the icons and the link on the "Donate Here" button.</h4>
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(m => m.Blurb, new { @class = "col-md-2 control-label" })
+        @Html.TextBoxFor(m => m.Blurb, new { @class = "form-control" })
+        @Html.ValidationMessage("Blurb", new { @class = "col-md-4 control-label", @style = "color: salmon;" })
+    </div>
+
+    <div class="form-group" ">
+        @Html.LabelFor(m => m.IconLink1, new { @class = "col-md-2 control-label" })
+        @Html.TextBoxFor(m => m.IconLink1, new { @class = "form-control" })
+        @Html.ValidationMessage("IconLink1", new { @class = "col-md-4 control-label", @style = "color: salmon;" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.IconLink2, new { @class = "col-md-2 control-label" })
+        @Html.TextBoxFor(m => m.IconLink2, new { @class = "form-control" })
+        @Html.ValidationMessage("IconLink2", new { @class = "col-md-4 control-label", @style = "color: salmon;" })
+    </div>
+
+    <div class="form-group" ">
+        @Html.LabelFor(m => m.DonateLink, new { @class = "col-md-2 control-label" })
+        @Html.TextBoxFor(m => m.DonateLink, new { @class = "form-control" })
+        @Html.ValidationMessage("DonateLink", new { @class = "col-md-4 control-label", @style = "color: salmon;" })
+    </div>
+
+    <div class="form-group">
+
+        <label class="col-md-2 control-label">110x110 .png image for icon1</label>
+        <div class="col-md-4">
+            <input type="file" name="FileIcon1" /><br />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label">110x110 .png image for icon2</label>
+        <div class="col-md-4">
+            <input type="file" name="FileIcon2" /><br />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Submit" />
+        </div>
+    </div>
+    <div id="errormessage" class="errormessage">
+        <p id="message">@ViewBag.Message</p>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@if (ViewBag.IsAdmin)
+{
+    <script>
+        function InitAdmin() {
+            $("#addGame").submit(function () {
+                var q = $("#addGame");
+                q.validate();
+                if (q.valid()) {
+                    var form = q[0];
+                    if (isadmin) {
+                        AddNewGame(form.Title.value);
+                    } else {
+                        ShowError("You do not have permission to add new games")
+                    }
+                }
+                return false;
+            });
+        };
+    </script>
+}
+else
+{
+    <script>
+        function InitAdmin() {
+
+        }
+    </script>
+}
+
+<script>
+    $(window).load(function () {
+        InitGame(gameConfig);
+        InitAdmin();
+    });
+</script>

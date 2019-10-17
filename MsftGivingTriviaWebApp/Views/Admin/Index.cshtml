@@ -53,27 +53,31 @@ else
         <div class="lead">
             Choose an admin task from the list below:
         </div>
-        
+
         <div class="row">
             <div class="col-md-8">
                 <section id="loginForm">
-                    @using (Html.BeginForm("UploadQuestions", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new {
-                        enctype = "multipart/form-data", @class = "form-horizontal", role = "form",
-                        id ="uploadForm" }))
+                    @using (Html.BeginForm("UploadQuestions", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new
+                    {
+                        enctype = "multipart/form-data",
+                        @class = "form-horizontal",
+                        role = "form",
+                        id = "uploadForm"
+                    }))
                     {
                         @Html.AntiForgeryToken()
                         <h4>Upload questions</h4>
 
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                        <div class="form-group">                            
+                        <div class="form-group">
                             <div class="col-md-10">
                                 <input type="file" name="FileUpload1" /><br />
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">                                
-                                <input type="submit" value="Upload" class="btn btn-default" style="float:left"/>
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Upload" class="btn btn-default" style="float:left" />
                             </div>
                         </div>
                     }
@@ -117,6 +121,29 @@ else
         <div class="row">
             <div class="col-md-8">
                 <section id="loginForm">
+                    @using (Html.BeginForm("HomePageCustomize", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
+                new { @class = "form-horizontal", role = "form", id = "customizeForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h4>Customize Home Page</h4>
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="CUSTOMIZE" class="btn btn-default" />
+                            </div>
+                        </div>
+                    }
+                </section>
+            </div>
+        </div>
+
+        <hr/>
+
+        <div class="row">
+            <div class="col-md-8">
+                <section id="loginForm">
                     @using (Html.BeginForm("DeleteQuestions", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
 new { @class = "form-horizontal", role = "form", id = "deleteQuestionsForm" }))
                     {
@@ -139,52 +166,52 @@ new { @class = "form-horizontal", role = "form", id = "deleteQuestionsForm" }))
 
         @if (ViewBag.UserName == "clovett@microsoft.com")
         {
-        <div class="row">
-            <div class="col-md-8">
-                <section id="loginForm">
-                    @using (Html.BeginForm("ResetUsers", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
+            <div class="row">
+                <div class="col-md-8">
+                    <section id="loginForm">
+                        @using (Html.BeginForm("ResetUsers", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
 new { @class = "form-horizontal", role = "form", id = "resetUsersForm" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <h4>Reset All Users Scores &amp; Wins</h4>
+                        {
+                            @Html.AntiForgeryToken()
+                            <h4>Reset All Users Scores &amp; Wins</h4>
 
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="RESET" class="btn btn-default" />
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="RESET" class="btn btn-default" />
+                                </div>
                             </div>
-                        </div>
-                    }
-                </section>
+                        }
+                    </section>
+                </div>
             </div>
-        </div>
 
 
-        <hr />
+            <hr />
 
-        <div class="row">
-            <div class="col-md-8">
-                <section id="loginForm">
-                    @using (Html.BeginForm("SetKey", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
-                new { @class = "form-horizontal", role = "form", id = "setKeyForm" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <h4>Set API Key</h4>
+            <div class="row">
+                <div class="col-md-8">
+                    <section id="loginForm">
+                        @using (Html.BeginForm("SetKey", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
+                    new { @class = "form-horizontal", role = "form", id = "setKeyForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <h4>Set API Key</h4>
 
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="KEY" class="btn btn-default" />
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="KEY" class="btn btn-default" />
+                                </div>
                             </div>
-                        </div>
-                    }
-                </section>
+                        }
+                    </section>
+                </div>
             </div>
-        </div>
         }
 
         <div style="clear:both"></div>
-</div>
+    </div>
 
     <div id="errormessage" class="errormessage">
         @ViewBag.Message

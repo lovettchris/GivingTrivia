@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations.Schema;
+using System;
+using System.Diagnostics;
 
 namespace MsftGivingTriviaWebApp.Models
 {
@@ -21,13 +23,47 @@ namespace MsftGivingTriviaWebApp.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        static string ConnectionStringId = "DefaultConnection";
+
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base(ConnectionStringId, throwIfV1Schema: false)
         {
         }
 
+        static bool deleteDatabase = false;
+
         public static ApplicationDbContext Create()
         {
+            if (System.Environment.GetEnvironmentVariable("USERNAME") == "clovett")
+            {
+                ConnectionStringId = "LocalConnection";
+                var context = new ApplicationDbContext();
+                if (deleteDatabase)
+                {
+                    // reset the database completely for a clean local test run from scratch.
+                    deleteDatabase = false;
+                    try
+                    {
+                        if (context.Database.Exists())
+                        {
+                            context.Database.Delete();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine("Error deleting local database: " + e.Message);
+                    }
+                    try
+                    {
+                        context.Database.CreateIfNotExists();
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine("Error creating local database: " + e.Message);
+                    }
+                }
+                return context;
+            }
             return new ApplicationDbContext();
         }
 
@@ -35,7 +71,7 @@ namespace MsftGivingTriviaWebApp.Models
 
         public DbSet<QuestionModel> Questions { get; set; }
 
-
+        public DbSet<CustomizationsModel> Customizations { get; set; }
     }
 
     [Table("AspSharedConfig")]

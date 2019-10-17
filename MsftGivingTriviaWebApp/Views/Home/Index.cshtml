@@ -1,4 +1,6 @@
-﻿@{
+﻿@using MsftGivingTriviaWebApp.Models
+@model HomePageCustomizeModel
+@{
     ViewBag.Title = "Home Page";
 }
 <style type="text/css">
@@ -7,7 +9,7 @@
     }
 </style>
 
-<div class="jumbotron bgtheme" >
+<div class="jumbotron bgtheme">
     <img src="/content/trivialogo.png" class="banner" />
     <p class="lead center">
         Welcome to the Give Campaign online trivia challenge!
@@ -16,16 +18,16 @@
         Our aim is to raise money to make the world a better place while enjoying a game of trivia with coworkers and friends.
         What's more fun than that?
         <br />
-        All contributions will go towards either Bold Idea, an organization that develops and empowers young minds to execute bold ideas as a team through the power of technology, or the Anita Borg Institute, an organization that helps women grow their careers and make significant contributions to technical fields.
+        <span>@Model.Blurb</span>
     </p>
 
     <p class="lead center" style="font-weight:bold">Please donate $5 or more to participate in the game.</p>
 
     <table align="center">
         <tr>
-            <td><a href="https://boldidea.org/"><img src="/content/icon1.jpg" class="banner" title="Bold Idea" /></a></td>
-            <td><a href="https://anitab.org/"><img src="/content/icon2.png" class="banner" title="Doctors without borders"/></a></td>
-            <td><a href="http://aka.ms/dsstriviachallenge"><img src="/content/give.jpg" class="banner" title="Give" /></a></td>
+            <td><a href="@Model.IconLink1"><img src="@Model.IconUrl1" class="banner" title="Bold Idea" /></a></td>
+            <td><a href="@Model.IconLink2"><img src="@Model.IconUrl2" class="banner" title="Legacy Premier Foundation" /></a></td>
+            <td><a href="https://aka.ms/give"><img src="/content/icon3.png" class="banner" title="Give" /></a></td>
         </tr>
     </table>
 </div>
@@ -43,7 +45,7 @@
             <tr>
                 <td>
                     <p>
-                        <a class="btn btn-primary btn-lg bgtheme" href="https://microsoft.benevity.org/campaigns/4676">Donate Here</a>
+                        <a class="btn btn-primary btn-lg bgtheme" href="@Model.DonateLink">Donate Here</a>
                         <a class="btn btn-primary btn-lg bgtheme" href="/play/index">Join a Game</a>
                     </p>
                 </td>
